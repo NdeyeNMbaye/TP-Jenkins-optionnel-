@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce projet met en place un pipeline CI/CD avec **Jenkins** pour le microservice **insertion-service** développé avec Spring Boot. Le `Jenkinsfile` définit les étapes du pipeline : compilation, tests, création et push de l'image Docker vers Docker Hub.
+Ce projet met en place un pipeline CI/CD avec **Jenkins** pour le microservice **diplomas-service** développé avec Spring Boot. Le `Jenkinsfile` définit les étapes du pipeline : compilation, tests, création et push de l'image Docker vers Docker Hub.
 
 ---
 
