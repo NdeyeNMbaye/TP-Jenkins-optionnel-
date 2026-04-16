@@ -1,99 +1,55 @@
-# TP Jenkins - CI/CD Insertion Service
 
-## Description
+### Service Diplôme – CI/CD Pipeline (Jenkins + Docker)
 
-Ce projet met en place un pipeline CI/CD avec **Jenkins** pour le microservice **diplomas-service** développé avec Spring Boot. Le `Jenkinsfile` définit les étapes du pipeline : compilation, tests, création et push de l'image Docker vers Docker Hub.
+Ce projet est une application backend Spring Boot permettant la gestion des diplômes.
+L’objectif principal de ce travail est la mise en place d’une chaîne CI/CD complète à l’aide de Jenkins, Maven et Docker.
 
----
+Le pipeline automatise :
 
-## Prérequis
+le build du projet
+les tests
+la génération du package
+la création d’une image Docker
+le push vers Docker Hub
 
-- Un compte [GitHub](https://github.com)
-- Un compte [Docker Hub](https://hub.docker.com)
-- Jenkins installé
-- Git
+### Technologies utilisées
+Java 17
+Spring Boot
+Maven
+Docker
+Jenkins (CI/CD)
+GitHub (SCM)
 
----
+### Architecture CI/CD
 
-## Contenu du Jenkinsfile
+Le pipeline est structuré comme suit :
 
-Le pipeline Jenkins est composé de 5 stages :
-
-### Stage 1 : Checkout
-Récupère le code source depuis le repo GitHub.
-
-### Stage 2 : Build
-Compile le projet Spring Boot avec Maven :
-```bash
-mvn clean package -DskipTests
-```
-
-### Stage 3 : Test
-Lance les tests unitaires :
-```bash
-mvn test
-```
-
-### Stage 4 : Build Docker Image
-Construit l'image Docker du microservice :
-```bash
-docker build -t $DOCKER_HUB_USER/insertion-service:latest .
-```
-
-### Stage 5 : Push Docker Image
-Pousse l'image vers Docker Hub :
-```bash
-docker push $DOCKER_HUB_USER/insertion-service:latest
-```
-
----
-
-## Dockerfile
-
-Le projet utilise un **multi-stage Dockerfile** pour optimiser la taille de l'image :
-
-```dockerfile
-FROM maven:3.9.6-eclipse-temurin-17 AS builder
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline -B
-COPY src ./src
-RUN mvn clean package -DskipTests -B
-
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
-EXPOSE 8082
-ENTRYPOINT ["java", "-jar", "app.jar"]
-```
-
-**Explication du multi-stage :**
-- **Stage 1** : compile le projet avec Maven
-- **Stage 2** : crée une image légère avec uniquement le JAR compilé
-
----
-
-## Configuration des Variables Jenkins
-
-Les variables sensibles sont à configurer dans Jenkins :
-
-| Variable | Description |
-|----------|-------------|
-| `DOCKER_HUB_USER` | Username Docker Hub |
-| `DOCKER_HUB_TOKEN` | Token/Password Docker Hub |
-
----
-
-## Captures d'écran
+Récupération du code depuis GitHub
+Compilation avec Maven
+Exécution des tests
+Packaging de l’application
+Build de l’image Docker
+Authentification Docker Hub
+Push de l’image Docker
 
 ### Pipeline Jenkins
-<!-- capture pipeline Jenkins -->
 
-### Image Docker sur Docker Hub
-<!-- capture docker hub -->
+Le pipeline est défini dans le fichier Jenkinsfile à la racine du projet.
 
----
+Exemple de fonctionnement :
+Build automatique à chaque commit
+Exécution des tests unitaires
+Génération de l’image Docker
+Publication sur Docker Hub
 
-## Auteur
+### Pipeline réussi
 
-**Ndeye Mbaye** — M2 Génie Logiciel
+<img width="1918" height="774" alt="image" src="https://github.com/user-attachments/assets/81ffff7e-98ad-4d7a-a725-789aa38a7d06" />
+
+<img width="1915" height="924" alt="image" src="https://github.com/user-attachments/assets/8c7f8088-8eea-44f2-94a8-e9a57169aed7" />
+
+### Docker Image
+
+<img width="1052" height="199" alt="image" src="https://github.com/user-attachments/assets/d1072a57-7583-4186-9c8c-89209634afe4" />
+
+
