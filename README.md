@@ -49,7 +49,11 @@ Publication sur Docker Hub
 <img width="1915" height="924" alt="image" src="https://github.com/user-attachments/assets/8c7f8088-8eea-44f2-94a8-e9a57169aed7" />
 
 ### Docker Image
+<img width="1863" height="915" alt="image" src="https://github.com/user-attachments/assets/e4b5ba51-2af2-404f-8e3e-8b37908b25de" />
+
 
 <img width="1052" height="199" alt="image" src="https://github.com/user-attachments/assets/d1072a57-7583-4186-9c8c-89209634afe4" />
+
+Ce projet démontre la mise en place d’un pipeline CI/CD complet automatisé avec Jenkins et Docker, permettant une intégration et un déploiement continus du service de gestion des diplômes.
 
 
